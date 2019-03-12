@@ -1,13 +1,16 @@
 function mainmenu(){
     header = game.add.tileSprite(200, 50, 1923, 1001, 'header');
+
     header.scale.setTo(0.2,0.2);
    // background = game.add.tileSprite(0, 0, 800, 600, 'background');
-    button_play = game.add.button(300, 250, 'button_play', actionOnClick, this, 2, 1, 0);
-    button_play.scale.setTo(0.1,0.1);
-}
+    button_play = game.add.button(300, 300, 'button_play', actionOnClick, this, 2, 1, 0);
+    button_how_to_play = game.add.button(300, 400, 'button_how_to_play', actionOnClick, this, 2, 1, 0);
 
+    button_play.scale.setTo(0.1,0.1);
+    button_how_to_play.scale.setTo(0.1,0.1);
+}
 function actionOnClick () {
-    game.state.start('StateA');
+    game.state.start('StateB');
     //console.log(game.rnd.state());
     //game.rnd.state();
 }

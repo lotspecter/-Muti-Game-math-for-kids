@@ -2,18 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="user-scalable=no,  initial-scale=1,  maximum-scale=1,  width=device-width" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pizza Party</title>
 </head>
 <body>
 <script src="./js/phaser.min.js"></script>
+<script src="./js/CanvasInput.min.js"></script>
+<script src="./js/phaser-input.min.js"></script>
+
 <script>
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Pizza Party', { preload: preload, create: create, render: render });
+
 
 var button_play;
 var background;
 var header;
+var pizza;
 var result = 'Drag a sprite';
 var check_state = true;
 var count_sonic = 1;
@@ -21,15 +26,18 @@ var count_atari = 1 ;
 var random_number = 0;
 var random_number_ff = 0;
 var P2Game = {};
+var input;
 
 function preload() {
-
+    game.add.plugin(PhaserInput.Plugin);
     game.load.image('header', 'assets/head.png');
     game.load.spritesheet('button_play', 'assets/play-buttom.png');
+    game.load.spritesheet('button_how_to_play', 'assets/how-to-play-bottom.png');
 
     game.state.add('StateA', P2Game.StateA);
     game.state.add('StateB', P2Game.StateB);
     game.state.add('StateC', P2Game.StateC);
+
     //game.load.image('background','assets/misc/starfield.jpg');
 }
 
@@ -49,7 +57,13 @@ return Phaser.Rectangle.intersects(boundsA, boundsB);
 
 }
 
+function randomIntFromInterval(min,max) // min and max included
+{
+    return (Math.random()*(max - min + 1))+min;
+}
+
 function render() {
+    //console.log(input.value);
 
 }
 

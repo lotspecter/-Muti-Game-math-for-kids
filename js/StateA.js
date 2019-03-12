@@ -25,6 +25,7 @@ preload: function () {
 },
 
 create: function () {
+
     check_state = true;
     count_sonic = 0;
     count_atari = 0;
@@ -51,15 +52,15 @@ create: function () {
     random_number = Math.floor((Math.random() * 10) + 1);
     random_number_ff = Math.floor((Math.random() * 10) + 1);
 
-    mushroom_feeze_q = game.add.sprite(20, 350, 'mushroom_feeze')
+    mushroom_feeze_q = game.add.sprite(15, 350, 'mushroom_feeze')
     mushroom_feeze_q.scale.setTo(0.15,0.15)
 
-    mushroom2_feeze_q = game.add.sprite(20, 450, 'mushroom2_feeze')
+    mushroom2_feeze_q = game.add.sprite(15, 450, 'mushroom2_feeze')
     mushroom2_feeze_q.scale.setTo(0.15,0.15)
 
 
-    var text_mushroom = game.add.text(80, 360, ' = ' + random_number , { font: "40px Arial", fill: "#FF4500", align: "center" });
-    var text_mushroom = game.add.text(80, 460, ' = ' + random_number_ff , { font: "40px Arial", fill: "#FF4500", align: "center" });
+    var text_mushroom = game.add.text(75, 360, ' = ' + random_number , { font: "40px Arial", fill: "#FF4500", align: "center" });
+    var text_mushroom = game.add.text(75, 460, ' = ' + random_number_ff , { font: "40px Arial", fill: "#FF4500", align: "center" });
 
     
     var group = game.add.group();
@@ -94,25 +95,10 @@ result = "Dragging " + sprite.key;
 
 onDragStop : function (sprite, pointer) {
 
-/*
-if (checkOverlap(sprite, bin))
-{
-    sprite.destroy();
-    if(sprite.key == 'sonic')
-        count_sonic -= 1
-    else if (sprite.key == 'atari')
-        count_atari -= 1
-}
-*/
-result = sprite.key + " dropped at x:" + pointer.x + " y: " + pointer.y + ' sonic ' + count_sonic + ' atari ' + count_atari + 'random' + random_number;
 
-if (pointer.y < 110 || pointer.y > 500)
+if (checkOverlap(sprite, pizza))
 {
-    console.log('input disabled on', sprite.key);
-    sprite.input.enabled = false;
     //sprite.destroy();
-    sprite.sendToBack();
-}else if(check_state){
     if(sprite.key == 'sonic'){
         count_sonic += 1
         //sprite.input.enabled = false;
@@ -127,11 +113,36 @@ if (pointer.y < 110 || pointer.y > 500)
     }
 }
 
+result = sprite.key + " dropped at x:" + pointer.x + " y: " + pointer.y + ' sonic ' + count_sonic + ' atari ' + count_atari + 'random' + random_number;
+
+if (pointer.y < 110 || pointer.y > 500)
+{
+    console.log('input disabled on', sprite.key);
+    sprite.input.enabled = false;
+    //sprite.destroy();
+    sprite.sendToBack();
+}
+/*
+else if(check_state){
+    if(sprite.key == 'sonic'){
+        count_sonic += 1
+        //sprite.input.enabled = false;
+        sprite.events.onInputDown.add(remove, this);
+        sprite.sendToBack();
+    }
+    else if (sprite.key == 'atari'){
+        count_atari += 1
+        //sprite.input.enabled = false;
+        sprite.events.onInputDown.add(remove, this);
+        sprite.sendToBack();
+    }
+}*/
+
 },
 
 gotoStateB: function () {
 
-    this.state.start('StateA');
+    this.state.start('StateB');
 
 },
 

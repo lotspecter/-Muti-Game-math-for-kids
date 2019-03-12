@@ -25,10 +25,15 @@ P2Game.StateB = function (game) {
     },
     
     create: function () {
+
         check_state = true;
         count_sonic = 1;
         count_atari = 1 ;
         random_number = 0;
+        input = 0;
+        input2 = 0;
+        input_total = 0;
+
         header.visible =! header.visible;
         button_play.visible =! button_play.visible;
     
@@ -48,40 +53,81 @@ P2Game.StateB = function (game) {
         mushroom2_feeze.scale.setTo(0.15,0.15)
     
         random_number = Math.floor((Math.random() * 10) + 1);
+        random_number_2 = Math.floor((Math.random() * 10) + 1);
+        total_mushroom_feeze = random_number + random_number_2;
+
+        random_number_2_1 = Math.floor((Math.random() * 10) + 1);
+        random_number_2_2= Math.floor((Math.random() * 10) + 1);
+        total_mushroom_feeze_2_1 = random_number_2_1 + random_number_2_2;
+
+        mushroom_feeze_q = game.add.sprite(10, 340, 'mushroom_feeze')
+        mushroom_feeze_q.scale.setTo(0.09,0.09)
     
-        mushroom_feeze_q = game.add.sprite(20, 350, 'mushroom_feeze')
-        mushroom_feeze_q.scale.setTo(0.15,0.15)
-    
-        var text_mushroom = game.add.text(80, 360, ' = ' + random_number , { font: "40px Arial", fill: "#FF4500", align: "center" });
-    
-        var object = {
-            name : 'mushroom',
-            data : text_mushroom
-        }
+        mushroom2_feeze_q = game.add.sprite(10, 390, 'mushroom2_feeze')
+        mushroom2_feeze_q.scale.setTo(0.09,0.09)
+
+        input = game.add.inputField(130, 345, {
+            font: '18px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            width: 20,
+            padding: 8,
+            borderWidth: 1,
+            borderColor: '#000',
+            borderRadius: 6,
+        });
+
+        input2 = game.add.inputField(130, 395, {
+            font: '18px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            width: 20,
+            padding: 8,
+            borderWidth: 1,
+            borderColor: '#000',
+            borderRadius: 6,
+        });
+
+        input_total = game.add.inputField(130, 445, {
+            font: '18px Arial',
+            fill: '#212121',
+            fontWeight: 'bold',
+            width: 20,
+            padding: 8,
+            borderWidth: 1,
+            borderColor: '#000',
+            borderRadius: 6,
+        });
+
+        var text_plus = game.add.text(130, 360, ' + ', { font: "50px Arial", fill: "#FF4500", align: "center" });
+        var text_mushroom = game.add.text(55, 350, random_number + ' + ' + random_number_2 + ' = ' , { font: "20px Arial", fill: "#FF4500", align: "center" });
+        var text_mushroom2 = game.add.text(55, 400, random_number_2_1 + ' + ' + random_number_2_2 + ' = ' , { font: "20px Arial", fill: "#FF4500", align: "center" });
+        var text_total = game.add.text(50, 450, 'TOTAL', { font: "25px Arial", fill: "#FF4500", align: "center" });
+
         
         var group = game.add.group();
         group.inputEnableChildren = true;
     
         var atari = [];
         var sonic = [];
-        for(var i = 0 ;i < 50;i++){
-            atari[i] = group.create(650, 350, 'atari');
+        for(var i = 0 ;i < total_mushroom_feeze;i++){
+            atari[i] = group.create(randomIntFromInterval(240,400),randomIntFromInterval(100,380), 'atari');
             atari[i].scale.setTo(0.15,0.15);
-            atari[i].inputEnabled = true;
-            atari[i].input.enableDrag();
-            atari[i].events.onDragStart.add(this.onDragStart, this);
-            atari[i].events.onDragStop.add(this.onDragStop, this);
-    
-            sonic = group.create(650, 290, 'sonic');
-            sonic.scale.setTo(0.15,0.15);
-            sonic.inputEnabled = true;
-            sonic.input.enableDrag();
-            sonic.events.onDragStart.add(this.onDragStart, this);
-            sonic.events.onDragStop.add(this.onDragStop, this);
+            //atari[i].inputEnabled = true;
+            //atari[i].input.enableDrag();
+            //atari[i].events.onDragStart.add(this.onDragStart, this);
+            //atari[i].events.onDragStop.add(this.onDragStop, this);
         }
+        for(var i = 0 ;i < total_mushroom_feeze_2_1;i++){
+            sonic = group.create(randomIntFromInterval(250,480),randomIntFromInterval(100,380), 'sonic');
+            sonic.scale.setTo(0.15,0.15);
+            //sonic.inputEnabled = true;
+            //sonic.input.enableDrag();
+            //sonic.events.onDragStart.add(this.onDragStart, this);
+           // sonic.events.onDragStop.add(this.onDragStop, this);
         //  Enable input and allow for dragging
         //group.onChildInputDown.add(onDown, this);
-    
+        }
     },
     onDragStart : function (sprite, pointer) {
     
@@ -146,7 +192,12 @@ P2Game.StateB = function (game) {
     },
     
     update: function () {
-    
+        var total = parseInt(input.value) +  parseInt(input2.value);
+        console.log(total + ' ' + parseInt(input_total.value) );
+        if(parseInt(input_total.value) == total){
+            button_play = game.add.button(300, 400, 'button_play', this.gotoStateB, this, 2, 1, 0);
+            button_play.scale.setTo(0.1,0.1);
+        }
     },
     
     render: function () {
