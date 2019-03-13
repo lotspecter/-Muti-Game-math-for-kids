@@ -76,12 +76,12 @@ create: function () {
         atari[i].events.onDragStart.add(this.onDragStart, this);
         atari[i].events.onDragStop.add(this.onDragStop, this);
 
-        sonic = group.create(650, 290, 'sonic');
-        sonic.scale.setTo(0.15,0.15);
-        sonic.inputEnabled = true;
-        sonic.input.enableDrag();
-        sonic.events.onDragStart.add(this.onDragStart, this);
-        sonic.events.onDragStop.add(this.onDragStop, this);
+        sonic[i] = group.create(650, 290, 'sonic');
+        sonic[i].scale.setTo(0.15,0.15);
+        sonic[i].inputEnabled = true;
+        sonic[i].input.enableDrag();
+        sonic[i].events.onDragStart.add(this.onDragStart, this);
+        sonic[i].events.onDragStop.add(this.onDragStop, this);
     }
     //  Enable input and allow for dragging
     //group.onChildInputDown.add(onDown, this);

@@ -119,8 +119,8 @@ P2Game.StateB = function (game) {
             //atari[i].events.onDragStop.add(this.onDragStop, this);
         }
         for(var i = 0 ;i < total_mushroom_feeze_2_1;i++){
-            sonic = group.create(randomIntFromInterval(250,480),randomIntFromInterval(100,380), 'sonic');
-            sonic.scale.setTo(0.15,0.15);
+            sonic[i] = group.create(randomIntFromInterval(250,480),randomIntFromInterval(100,380), 'sonic');
+            sonic[i].scale.setTo(0.15,0.15);
             //sonic.inputEnabled = true;
             //sonic.input.enableDrag();
             //sonic.events.onDragStart.add(this.onDragStart, this);

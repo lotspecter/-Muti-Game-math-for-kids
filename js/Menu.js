@@ -10,7 +10,7 @@ function mainmenu(){
     button_how_to_play.scale.setTo(0.1,0.1);
 }
 function actionOnClick () {
-    game.state.start('StateB');
+    game.state.start('StateC');
     //console.log(game.rnd.state());
     //game.rnd.state();
 }
