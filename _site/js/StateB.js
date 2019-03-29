@@ -25,7 +25,7 @@ P2Game.StateB = function (game) {
     },
     
     create: function () {
-
+        topmenu();
         check_state = true;
         count_sonic = 1;
         count_atari = 1 ;

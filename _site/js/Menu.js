@@ -8,9 +8,12 @@ preload: function () {
     this.load.spritesheet('button_play', 'assets/play-buttom.png');
     this.load.spritesheet('button_how_to_play', 'assets/how-to-play-bottom.png');
     this.load.spritesheet('button_ok', 'assets/ok-buttom.png');
+
 },
 
 create: function () {
+    // game.scale.fullScreenScaleMode = Phaser.ScaleManager.EXACT_FIT;
+    topmenu();
     header = game.add.tileSprite(200, 50, 1923, 1001, 'header');
 
     header.scale.setTo(0.2,0.2);

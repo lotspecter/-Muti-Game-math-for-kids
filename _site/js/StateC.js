@@ -26,6 +26,7 @@ preload: function () {
 
 create: function () {
 
+    topmenu();
     check_state = true;
     count_sonic = 0;
     count_atari = 0;

@@ -34,6 +34,9 @@ function preload() {
     game.state.add('StateB', P2Game.StateB);
     game.state.add('StateC', P2Game.StateC);
     game.state.add('Endgame', P2Game.Endgame);
+    game.load.spritesheet('button_fullscreen', 'assets/fullscreen.png');
+    game.load.spritesheet('button_home', 'assets/home.png');
+    game.load.spritesheet('button_refresh', 'assets/refresh.png');
     //game.load.image('background','assets/misc/starfield.jpg');
 }
 
@@ -73,7 +76,31 @@ function remove(sprite) {
 
     result = sprite.key  + ' sonic ' + count_sonic + ' atari ' + count_atari;
 }
+function fullscreen(){
+    if (game.scale.isFullScreen)
+    {
+        game.scale.stopFullScreen();
+    }
+    else
+    {
+        game.scale.startFullScreen(false);
+    }
+}
+function home(){
+    game.state.start('Menu');
+}
+function refresh(){
+    game.state.start(game.state.current);
+}
+function topmenu(){
+    button_fullscreen = game.add.button(580, 20, 'button_fullscreen', fullscreen, this, 2, 1, 0);
+    button_home = game.add.button(660, 20, 'button_home', home, this, 2, 1, 0);
+    button_refresh = game.add.button(740, 20, 'button_refresh', refresh, this, 2, 1, 0);
 
+    button_refresh.scale.setTo(0.1,0.1);
+    button_home.scale.setTo(0.1,0.1);
+    button_fullscreen.scale.setTo(0.1,0.1);
+}
 </script>
 <script src="./js/Menu.js"></script>
 <script src="./js/HowToPlay.js"></script>
