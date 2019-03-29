@@ -189,7 +189,7 @@ update: function () {
 
 render: function () {
 
-    this.game.debug.text(result, 10, 20);
+    //this.game.debug.text(result, 10, 20);
 
 }
 
