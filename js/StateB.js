@@ -52,12 +52,12 @@ P2Game.StateB = function (game) {
         mushroom2_feeze = game.add.sprite(650, 290, 'mushroom2_feeze')
         mushroom2_feeze.scale.setTo(0.15,0.15)
     
-        random_number = Math.floor((Math.random() * 10) + 1);
-        random_number_2 = Math.floor((Math.random() * 10) + 1);
+        random_number = Math.floor((Math.random() * 5) + 1);
+        random_number_2 = Math.floor((Math.random() * 5) + 1);
         total_mushroom_feeze = random_number + random_number_2;
 
-        random_number_2_1 = Math.floor((Math.random() * 10) + 1);
-        random_number_2_2= Math.floor((Math.random() * 10) + 1);
+        random_number_2_1 = Math.floor((Math.random() * 5) + 1);
+        random_number_2_2= Math.floor((Math.random() * 5) + 1);
         total_mushroom_feeze_2_1 = random_number_2_1 + random_number_2_2;
 
         mushroom_feeze_q = game.add.sprite(10, 340, 'mushroom_feeze')
@@ -110,8 +110,9 @@ P2Game.StateB = function (game) {
     
         var atari = [];
         var sonic = [];
+
         for(var i = 0 ;i < total_mushroom_feeze;i++){
-            atari[i] = group.create(randomIntFromInterval(240,400),randomIntFromInterval(100,380), 'atari');
+            atari[i] = group.create(randomIntFromInterval(240,400,i),randomIntFromInterval(100,380,i), 'atari');
             atari[i].scale.setTo(0.15,0.15);
             //atari[i].inputEnabled = true;
             //atari[i].input.enableDrag();
@@ -119,7 +120,7 @@ P2Game.StateB = function (game) {
             //atari[i].events.onDragStop.add(this.onDragStop, this);
         }
         for(var i = 0 ;i < total_mushroom_feeze_2_1;i++){
-            sonic[i] = group.create(randomIntFromInterval(250,480),randomIntFromInterval(100,380), 'sonic');
+            sonic[i] = group.create(randomIntFromInterval(250,480,i),randomIntFromInterval(100,380,i), 'sonic');
             sonic[i].scale.setTo(0.15,0.15);
             //sonic.inputEnabled = true;
             //sonic.input.enableDrag();
@@ -193,10 +194,11 @@ P2Game.StateB = function (game) {
     
     update: function () {
         var total = parseInt(input.value) +  parseInt(input2.value);
-        console.log(total + ' ' + parseInt(input_total.value) );
-        if(parseInt(input_total.value) == total){
-            button_play = game.add.button(300, 400, 'button_play', this.gotoStateB, this, 2, 1, 0);
-            button_play.scale.setTo(0.1,0.1);
+        console.log(total_mushroom_feeze + ' ' + total_mushroom_feeze_2_1 + ' ' + total + ' ' + ' ' + parseInt(input_total.value) );
+        if(parseInt(input_total.value) == total && total_mushroom_feeze == input.value && total_mushroom_feeze_2_1 == input2.value){
+            button_ok = game.add.button(300, 450, 'button_ok', this.gotoStateB, this, 2, 1, 0);
+            button_ok.scale.setTo(0.1,0.1);
+            button_ok.input.enabled = true;
         }
     },
     

@@ -1,4 +1,4 @@
-P2Game.StateC = function (game) {
+P2Game.HowToPlay = function (game) {
 
     this.pizza;
     this.refrigerator;
@@ -10,7 +10,7 @@ P2Game.StateC = function (game) {
 
 };
 
-P2Game.StateC.prototype = {
+P2Game.HowToPlay.prototype = {
 
 preload: function () {
 
@@ -43,27 +43,20 @@ create: function () {
     refrigerator = game.add.sprite(600, 280, 'refrigerator')
     refrigerator.scale.setTo(0.75,0.75)
 
-    mushroom_feeze = game.add.sprite(650, 350, 'mushroom_feeze')
+    mushroom_feeze = game.add.sprite(650, 290, 'mushroom_feeze')
     mushroom_feeze.scale.setTo(0.15,0.15)
 
-    mushroom2_feeze = game.add.sprite(650, 290, 'mushroom2_feeze')
-    mushroom2_feeze.scale.setTo(0.15,0.15)
 
-    random_number = Math.floor((Math.random() * 5) + 1);
-    random_number_ff = Math.floor((Math.random() * 5) + 1);
 
-    count_sonic = random_number_ff+2;
-    count_atari = random_number+2;
+    random_number = Math.floor((Math.random() * 10) + 1);
+    random_number_ff = Math.floor((Math.random() * 10) + 1);
 
     mushroom_feeze_q = game.add.sprite(15, 350, 'mushroom_feeze')
     mushroom_feeze_q.scale.setTo(0.15,0.15)
 
-    mushroom2_feeze_q = game.add.sprite(15, 450, 'mushroom2_feeze')
-    mushroom2_feeze_q.scale.setTo(0.15,0.15)
-
-
-    var text_mushroom_1 = game.add.text(75, 360, ' = ' + random_number , { font: "40px Arial", fill: "#FF4500", align: "center" });
-    var text_mushroom_2 = game.add.text(75, 460, ' = ' + random_number_ff , { font: "40px Arial", fill: "#FF4500", align: "center" });
+    var text_header = game.add.text(300, 0, 'ลองดูที่ซ้ายล่างสิเห็น' , { font: "40px Arial", fill: "#FF4500", align: "center" });
+    var text_mushroom = game.add.text(75, 360, ' = ' + '2' , { font: "40px Arial", fill: "#FF4500", align: "center" });
+    //var text_mushroom = game.add.text(75, 460, ' = ' + random_number_ff , { font: "40px Arial", fill: "#FF4500", align: "center" });
 
     
     var group = game.add.group();
@@ -72,41 +65,12 @@ create: function () {
     var atari = [];
     var sonic = [];
     for(var i = 0 ;i < 50;i++){
-        atari[i] = group.create(650, 350, 'atari');
+        atari[i] = group.create(650, 290, 'atari');
         atari[i].scale.setTo(0.15,0.15);
         atari[i].inputEnabled = true;
         atari[i].input.enableDrag();
         atari[i].events.onDragStart.add(this.onDragStart, this);
         atari[i].events.onDragStop.add(this.onDragStop, this);
-
-        sonic[i] = group.create(650, 290, 'sonic');
-        sonic[i].scale.setTo(0.15,0.15);
-        sonic[i].inputEnabled = true;
-        sonic[i].input.enableDrag();
-        sonic[i].events.onDragStart.add(this.onDragStart, this);
-        sonic[i].events.onDragStop.add(this.onDragStop, this);
-    }
-
-    for(var i = 0 ;i < count_atari;i++){
-        atari[i] = group.create(randomIntFromInterval(240,400,i),randomIntFromInterval(100,380,i), 'atari');
-        atari[i].scale.setTo(0.15,0.15);
-        atari[i].events.onInputDown.add(remove, this);
-
-        //atari[i].inputEnabled = true;
-        //atari[i].input.enableDrag();
-        //atari[i].events.onDragStart.add(this.onDragStart, this);
-        //atari[i].events.onDragStop.add(this.onDragStop, this);
-    }
-    for(var i = 0 ;i < count_sonic;i++){
-        sonic[i] = group.create(randomIntFromInterval(250,480,i),randomIntFromInterval(100,380,i), 'sonic');
-        sonic[i].scale.setTo(0.15,0.15);
-        sonic[i].events.onInputDown.add(remove, this);
-        sonic[i].inputEnabled = true;
-        //sonic[i].input.enableDrag();
-        //sonic.events.onDragStart.add(this.onDragStart, this);
-        //sonic.events.onDragStop.add(this.onDragStop, this);
-    //  Enable input and allow for dragging
-    //group.onChildInputDown.add(onDown, this);
     }
     //  Enable input and allow for dragging
     //group.onChildInputDown.add(onDown, this);
@@ -167,7 +131,7 @@ else if(check_state){
 
 gotoStateB: function () {
 
-    this.state.start('StateB');
+    this.state.start('Endgame');
 
 },
 

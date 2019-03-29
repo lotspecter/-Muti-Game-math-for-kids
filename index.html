@@ -8,13 +8,10 @@
 </head>
 <body>
 <script src="./js/phaser.min.js"></script>
-<script src="./js/CanvasInput.min.js"></script>
 <script src="./js/phaser-input.min.js"></script>
 
 <script>
 var game = new Phaser.Game(800, 600, Phaser.AUTO, 'Pizza Party', { preload: preload, create: create, render: render });
-
-
 var button_play;
 var background;
 var header;
@@ -29,15 +26,14 @@ var P2Game = {};
 var input;
 
 function preload() {
+    
     game.add.plugin(PhaserInput.Plugin);
-    game.load.image('header', 'assets/head.png');
-    game.load.spritesheet('button_play', 'assets/play-buttom.png');
-    game.load.spritesheet('button_how_to_play', 'assets/how-to-play-bottom.png');
-
+    game.state.add('Menu', P2Game.Menu);
+    game.state.add('HowToPlay', P2Game.HowToPlay);
     game.state.add('StateA', P2Game.StateA);
     game.state.add('StateB', P2Game.StateB);
     game.state.add('StateC', P2Game.StateC);
-
+    game.state.add('Endgame', P2Game.Endgame);
     //game.load.image('background','assets/misc/starfield.jpg');
 }
 
@@ -45,7 +41,7 @@ function create() {
     //Menu 
     game.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
     game.stage.backgroundColor = '#182d3b';
-    mainmenu();
+    game.state.start('Menu');
 }
 
 function checkOverlap(spriteA, spriteB) {
@@ -57,9 +53,9 @@ return Phaser.Rectangle.intersects(boundsA, boundsB);
 
 }
 
-function randomIntFromInterval(min,max) // min and max included
+function randomIntFromInterval(min,max,num) // min and max included
 {
-    return (Math.random()*(max - min + 1))+min;
+    return (Math.random()*(max - min + num))+min;
 }
 
 function render() {
@@ -67,8 +63,20 @@ function render() {
 
 }
 
+function remove(sprite) {
+    console.log('button up', sprite.key);
+    sprite.destroy();
+    if(sprite.key == 'sonic')
+        count_sonic -= 1
+    else if (sprite.key == 'atari')
+        count_atari -= 1
+
+    result = sprite.key  + ' sonic ' + count_sonic + ' atari ' + count_atari;
+}
+
 </script>
 <script src="./js/Menu.js"></script>
+<script src="./js/HowToPlay.js"></script>
 <script src="./js/StateA.js"></script>
 <script src="./js/StateB.js"></script>
 <script src="./js/StateC.js"></script>

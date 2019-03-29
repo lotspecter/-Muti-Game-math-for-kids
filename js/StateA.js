@@ -49,8 +49,8 @@ create: function () {
     mushroom2_feeze = game.add.sprite(650, 290, 'mushroom2_feeze')
     mushroom2_feeze.scale.setTo(0.15,0.15)
 
-    random_number = Math.floor((Math.random() * 10) + 1);
-    random_number_ff = Math.floor((Math.random() * 10) + 1);
+    random_number = Math.floor((Math.random() * 5) + 1);
+    random_number_ff = Math.floor((Math.random() * 5) + 1);
 
     mushroom_feeze_q = game.add.sprite(15, 350, 'mushroom_feeze')
     mushroom_feeze_q.scale.setTo(0.15,0.15)
@@ -142,7 +142,7 @@ else if(check_state){
 
 gotoStateB: function () {
 
-    this.state.start('StateB');
+    this.state.start('Endgame');
 
 },
 
@@ -154,13 +154,12 @@ gotoStateC: function () {
 
 update: function () {
     if(random_number == count_atari && random_number_ff == count_sonic){
-//this.game.input.enabled = false;
-    
-    button_play = game.add.button(300, 400, 'button_play', this.gotoStateB, this, 2, 1, 0);
-    button_play.scale.setTo(0.1,0.1);
-    button_play.input.enabled = true;
-    check_state = false;
-}
+        //this.game.input.enabled = false;
+        button_ok = game.add.button(300, 450, 'button_ok', this.gotoStateB, this, 2, 1, 0);
+        button_ok.scale.setTo(0.1,0.1);
+        button_ok.input.enabled = true;
+        check_state = false;
+    }
 },
 
 render: function () {
